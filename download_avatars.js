@@ -33,10 +33,20 @@ function downloadImageByURL(url, filePath) {
 }
 
 //INVOKE WITH CALLBACK FUNCTION
-getRepoContributors("jquery", "jquery", function(err, result, contributors) {
-  console.log('Errors', err);
-  console.log('Result:', result);
-  contributors.forEach(function (contributor) {
-    downloadImageByURL(contributor.avatar_url, 'avatars/' + contributor.login + '.jpg');
-  });
+
+var first = process.argv[2]
+var second = process.argv[3]
+
+getRepoContributors(first, second, function(err, result, contributors) {
+  if (first && second) {
+    console.log('Errors', err);
+    console.log('Result:', result);
+    contributors.forEach(function (contributor) {
+      downloadImageByURL(contributor.avatar_url, 'avatars/' + contributor.login + '.jpg');
+    });
+  } else {
+    console.log('please enter repo owner and repo name');
+    console.log('format is node download_avatars.js {repo owner} {repo name}');
+  }
+
 });
