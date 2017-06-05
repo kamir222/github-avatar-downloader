@@ -34,11 +34,11 @@ function downloadImageByURL(url, filePath) {
 
 //INVOKE WITH CALLBACK FUNCTION
 
-var first = process.argv[2]
-var second = process.argv[3]
+var repoOwner = process.argv[2]
+var repoName = process.argv[3]
 
-getRepoContributors(first, second, function(err, result, contributors) {
-  if (first && second) {
+getRepoContributors(repoOwner, repoName, function(err, result, contributors) {
+  if (repoOwner && repoName) {
     console.log('Errors', err);
     console.log('Result:', result);
     contributors.forEach(function (contributor) {
