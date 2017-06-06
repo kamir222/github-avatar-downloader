@@ -1,10 +1,13 @@
 var request = require('request');
 var fs = require('fs');
+require('dotenv').config()
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
-var GITHUB_USER = 'kamir222';
-var GITHUB_TOKEN = "1b5f5cb0ddeef69b2605fe6f85b877a1458dadc4";
+
+var GITHUB_USER = process.env.GITHUB_USER;
+var GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+
 var CONFIG = {headers: {
   'User-Agent': 'GitHub Avatar Downloader - Student Project'
  }
@@ -32,11 +35,10 @@ function downloadImageByURL(url, filePath) {
   .pipe(fs.createWriteStream(filePath))
 }
 
-//INVOKE WITH CALLBACK FUNCTION
-
 var repoOwner = process.argv[2]
 var repoName = process.argv[3]
 
+//INVOKE WITH CALLBACK FUNCTION
 getRepoContributors(repoOwner, repoName, function(err, result, contributors) {
   if (repoOwner && repoName) {
     console.log('Errors', err);
