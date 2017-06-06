@@ -1,6 +1,6 @@
 var request = require('request');
 var fs = require('fs');
-require('dotenv').config()
+require('dotenv').config();
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
@@ -32,11 +32,11 @@ function downloadImageByURL(url, filePath) {
   .on('response', function (response) {
     console.log('Response Status Code: ', response.statusCode);
   })
-  .pipe(fs.createWriteStream(filePath))
+  .pipe(fs.createWriteStream(filePath));
 }
 
-var repoOwner = process.argv[2]
-var repoName = process.argv[3]
+var repoOwner = process.argv[2];
+var repoName = process.argv[3];
 
 //INVOKE WITH CALLBACK FUNCTION
 getRepoContributors(repoOwner, repoName, function(err, result, contributors) {
